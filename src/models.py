@@ -64,11 +64,23 @@ class Planet(Base):
     surface_water = Column(String(250), nullable=False)
     terrain = Column(String(250), nullable=False)
 
-class Favorites(Base):
-    __tablename__ = 'favorites'
-    id_favs = Column(Integer(), primary_key=True)
+class Cha_Favs(Base):
+    __tablename__ = 'cha_favs'
+    id_cha_favs = Column(Integer(), primary_key=True)
+    id_user = Column(Integer(), ForeignKey("users.id_user"), nullable=False)
+    users = relationship(User)   
+
+class Pla_Favs(Base):
+    __tablename__ = 'pla_favs'
+    id_pla_favs = Column(Integer(), primary_key=True)
     id_user = Column(Integer(), ForeignKey("users.id_user"), nullable=False)
     users = relationship(User)
+
+class Shi_Favs(Base):
+    __tablename__ = 'shi_favs'
+    id_shi_favs = Column(Integer(), primary_key=True)
+    id_user = Column(Integer(), ForeignKey("users.id_user"), nullable=False)
+    users = relationship(User)    
 
 class Film(Base):
     __tablename__ = 'films'
