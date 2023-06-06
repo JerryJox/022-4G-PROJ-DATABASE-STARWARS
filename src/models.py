@@ -17,7 +17,7 @@ class User(Base):
 
 class Character(Base):
     __tablename__ = 'characters'
-    id_character = Column(Integer(), primary_key=True, unique=True)
+    id = Column(Integer(), primary_key=True, unique=True)
     name = Column(String(250), nullable=False)
     bith_year = Column(String(250), nullable=False)
     eye_color = Column(String(250))
@@ -33,7 +33,7 @@ class Character(Base):
 
 class Starship(Base):
     __tablename__ = 'starships'
-    id_starship = Column(Integer(), primary_key=True)
+    id = Column(Integer(), primary_key=True)
     cargo_capacity = Column(Integer(), nullable=False)
     consumable = Column(String(250), nullable=False)
     cost_in_credits = Column(Integer(), nullable=False)
@@ -52,7 +52,7 @@ class Starship(Base):
 
 class Planet(Base):
     __tablename__ = 'planets'
-    id_planet = Column(Integer(), primary_key=True)
+    id = Column(Integer(), primary_key=True)
     climate = Column(String(250), nullable=False)
     films = Column(Integer(), primary_key=True)
     gravity = Column(String(250), nullable=False)
@@ -66,20 +66,23 @@ class Planet(Base):
 
 class Cha_Favs(Base):
     __tablename__ = 'cha_favs'
-    id_cha_favs = Column(Integer(), primary_key=True)
+    id = Column(Integer(), primary_key=True)
+    cha_favs_id= Column(Integer(), ForeignKey("characters.id"), nullable=False)
     id_user = Column(Integer(), ForeignKey("users.id_user"), nullable=False)
     users = relationship(User)   
 
 class Pla_Favs(Base):
     __tablename__ = 'pla_favs'
-    id_pla_favs = Column(Integer(), primary_key=True)
+    id = Column(Integer(), primary_key=True)
+    pla_favs_id= Column(Integer(), ForeignKey("planets.id"), nullable=False)
     id_user = Column(Integer(), ForeignKey("users.id_user"), nullable=False)
     users = relationship(User)
 
 class Shi_Favs(Base):
     __tablename__ = 'shi_favs'
-    id_shi_favs = Column(Integer(), primary_key=True)
-    id_user = Column(Integer(), ForeignKey("users.id_user"), nullable=False)
+    id = Column(Integer(), primary_key=True)
+    shi_favs_id= Column(Integer(), ForeignKey("starships.id"), nullable=False)
+    user_id = Column(Integer(), ForeignKey("users.id"), nullable=False)
     users = relationship(User)    
 
 class Film(Base):
