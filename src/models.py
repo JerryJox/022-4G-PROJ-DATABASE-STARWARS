@@ -89,9 +89,9 @@ class Film(Base):
     __tablename__ = 'films'
     id_films = Column(Integer(), primary_key=True)
     film_name = Column(String(250), nullable=False)
-    characters = Column(String(250), ForeignKey("characters.name"), nullable=False)
-    starships = Column(String (250), ForeignKey("starships.name"), nullable=False)
-    planets = Column(String(250), ForeignKey("planets.name"), nullable=False)
+    characters = Column(String(250), ForeignKey("characters.id"), nullable=False)
+    starships = Column(String (250), ForeignKey("starships.id"), nullable=False)
+    planets = Column(String(250), ForeignKey("planets.id"), nullable=False)
 
 class Collaboration(Base):
     __tablename__ = 'collaborations'
