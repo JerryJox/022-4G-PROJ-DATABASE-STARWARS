@@ -23,7 +23,7 @@ class Character(Base):
     eye_color = Column(String(250))
     gender = Column (String(250))
     hair_color = Column(String(250))
-    # homeworld_id = Column(String(250), ForeingKey=("planets.id_planet"), nullable=False)
+    # homeworld_id = Column(String(250), ForeignKey=("planets.id_planet"), nullable=False)
     # planets = relationship(Planet)
     mass = Column(String(250), nullable=False)
     skin_color = Column(String(250), nullable=False)
@@ -96,10 +96,10 @@ class Film(Base):
 class Collaboration(Base):
     __tablename__ = 'collaborations'
     id_collab = Column(Integer(), primary_key=True)
-    id_films = Column(Integer(), ForeignKey("films.name"), nullable=False)
+    id_films = Column(Integer(), ForeignKey("films.id"), nullable=False)
     id_characters = Column(Integer(), ForeignKey("characters.id_character"), nullable=False)
-    id_starships = Column(String(250), ForeignKey("starships.name"), nullable=False)
-    id_planets = Column(String(250), ForeignKey("planets.name"), nullable=False)
+    id_starships = Column(String(250), ForeignKey("starships.id"), nullable=False)
+    id_planets = Column(String(250), ForeignKey("planets.id"), nullable=False)
     
 
 # class Address(Base):
